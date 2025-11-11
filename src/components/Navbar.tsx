@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Globe, Phone, Mail } from 'lucide-react';
+import { Menu, X, Globe, Phone } from 'lucide-react';
 import { useLanguage, languages } from '../context/LanguageContext';
 
 const Navbar: React.FC = () => {

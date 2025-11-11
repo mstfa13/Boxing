@@ -14,7 +14,6 @@ import { useLanguage } from '../context/LanguageContext';
 
 const Footer: React.FC = () => {
   const { language } = useLanguage();
-  const isArabic = language.code === 'ar';
 
   const content = {
     en: {

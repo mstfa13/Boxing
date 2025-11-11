@@ -76,7 +76,6 @@ const Booking: React.FC = () => {
   };
 
   const t = content[language.code];
-  const isArabic = language.code === 'ar';
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
