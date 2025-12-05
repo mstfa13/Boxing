@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Smartphone, Download } from 'lucide-react';
+import { Smartphone, Bell } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 const AppDownload: React.FC = () => {
@@ -9,6 +9,7 @@ const AppDownload: React.FC = () => {
   const content = {
     en: {
       title: 'Train Smarter with Our Mobile App',
+      comingSoon: 'Coming Soon',
       subtitle: 'Book sessions, track progress, and manage your boxing journey on the go',
       features: [
         'Easy booking & scheduling',
@@ -18,12 +19,12 @@ const AppDownload: React.FC = () => {
         'Session history & receipts',
         'Push notifications',
       ],
-      downloadOn: 'Download on the',
-      appStore: 'App Store',
-      googlePlay: 'Google Play',
+      notifyMe: 'Notify Me When Available',
+      stayTuned: 'Stay tuned! Our mobile app is under development.',
     },
     ar: {
       title: 'تدرب بشكل أذكى مع تطبيقنا للهاتف المحمول',
+      comingSoon: 'قريباً',
       subtitle: 'احجز الجلسات وتتبع التقدم وإدارة رحلتك في الملاكمة أثناء التنقل',
       features: [
         'حجز وجدولة سهلة',
@@ -33,9 +34,8 @@ const AppDownload: React.FC = () => {
         'سجل الجلسات والإيصالات',
         'إشعارات فورية',
       ],
-      downloadOn: 'حمل على',
-      appStore: 'App Store',
-      googlePlay: 'Google Play',
+      notifyMe: 'أعلمني عند التوفر',
+      stayTuned: 'ترقبوا! تطبيقنا للهاتف المحمول قيد التطوير.',
     },
   };
 
@@ -61,6 +61,10 @@ const AppDownload: React.FC = () => {
             className="space-y-8"
           >
             <div>
+              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                <Bell size={16} />
+                {t.comingSoon}
+              </div>
               <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
                 {t.title}
               </h2>
@@ -86,33 +90,18 @@ const AppDownload: React.FC = () => {
               ))}
             </ul>
 
-            {/* App Store Buttons */}
-            <div className="flex flex-wrap gap-4 pt-4">
-              <motion.a
-                href="#"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex items-center space-x-3 rtl:space-x-reverse bg-white text-dark-900 px-6 py-3 rounded-xl shadow-xl hover:shadow-2xl transition-all"
+            {/* Coming Soon Notice */}
+            <div className="pt-4">
+              <p className="text-white/80 mb-4">{t.stayTuned}</p>
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                className="inline-flex items-center space-x-3 rtl:space-x-reverse bg-white/20 backdrop-blur-sm text-white px-6 py-4 rounded-xl border border-white/30"
               >
-                <Download size={24} />
+                <Bell size={24} />
                 <div className="text-left rtl:text-right">
-                  <p className="text-xs opacity-75">{t.downloadOn}</p>
-                  <p className="font-bold">{t.appStore}</p>
+                  <p className="font-bold">{t.notifyMe}</p>
                 </div>
-              </motion.a>
-
-              <motion.a
-                href="#"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex items-center space-x-3 rtl:space-x-reverse bg-white text-dark-900 px-6 py-3 rounded-xl shadow-xl hover:shadow-2xl transition-all"
-              >
-                <Download size={24} />
-                <div className="text-left rtl:text-right">
-                  <p className="text-xs opacity-75">{t.downloadOn}</p>
-                  <p className="font-bold">{t.googlePlay}</p>
-                </div>
-              </motion.a>
+              </motion.div>
             </div>
           </motion.div>
 
@@ -146,7 +135,7 @@ const AppDownload: React.FC = () => {
                 }}
                 className="absolute -top-8 -right-8 bg-white/20 backdrop-blur-sm rounded-2xl p-4 shadow-xl"
               >
-                <Download size={32} className="text-white" />
+                <Bell size={32} className="text-white" />
               </motion.div>
             </div>
           </motion.div>
