@@ -33,7 +33,7 @@ function App() {
   return (
     <LanguageProvider>
       <Router>
-        <div className="App">
+        <div className="App overflow-x-hidden">
           <Navbar />
           <main>
             <Routes>

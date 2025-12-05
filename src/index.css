@@ -3,13 +3,16 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
   body {
     @apply bg-white text-dark-900 antialiased;
     font-feature-settings: 'cv11', 'ss01';
-  }
-
-  html {
-    scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
   }
 
   /* Custom scrollbar */
