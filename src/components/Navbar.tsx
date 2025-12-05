@@ -51,18 +51,17 @@ const Navbar: React.FC = () => {
       }`}
     >
       <div className="container-custom">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
           <motion.a
             href="#home"
-            className="flex items-center space-x-2 rtl:space-x-reverse"
-            whileHover={{ scale: 1.05 }}
+            className="flex items-center space-x-1.5 sm:space-x-2 rtl:space-x-reverse"
             whileTap={{ scale: 0.95 }}
           >
-            <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center">
-              <span className="text-white font-display font-bold text-2xl">O</span>
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-primary rounded-lg flex items-center justify-center">
+              <span className="text-white font-display font-bold text-xl sm:text-2xl">O</span>
             </div>
-            <span className="text-2xl font-display font-bold text-dark-900">
+            <span className="text-xl sm:text-2xl font-display font-bold text-dark-900">
               Oma<span className="text-primary-600">Box</span>
             </span>
           </motion.a>

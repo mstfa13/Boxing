@@ -33,7 +33,7 @@ const Testimonials: React.FC = () => {
   const currentTestimonial = testimonials[currentIndex];
 
   return (
-    <section id="testimonials" className="py-20 gradient-dark text-white relative overflow-hidden">
+    <section id="testimonials" className="py-12 sm:py-16 md:py-20 gradient-dark text-white relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{

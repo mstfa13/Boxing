@@ -54,20 +54,20 @@ const HowItWorks: React.FC = () => {
   const t = content[language.code];
 
   return (
-    <section id="how-it-works" className="py-20 bg-dark-50">
-      <div className="container-custom">
+    <section id="how-it-works" className="py-12 sm:py-16 md:py-20 bg-dark-50">
+      <div className="container-custom px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-12 md:mb-16"
         >
           <h2 className="section-heading">{t.title}</h2>
           <p className="section-subheading">{t.subtitle}</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 relative">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 relative">
           {/* Connection Lines (Desktop) */}
           <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-primary-200 to-transparent -translate-y-1/2 -z-0" />
 

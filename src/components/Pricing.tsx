@@ -30,20 +30,20 @@ const Pricing: React.FC = () => {
   const isArabic = language.code === 'ar';
 
   return (
-    <section id="pricing" className="py-20 bg-dark-50">
-      <div className="container-custom">
+    <section id="pricing" className="py-12 sm:py-16 md:py-20 bg-dark-50">
+      <div className="container-custom px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-12 md:mb-16"
         >
           <h2 className="section-heading">{t.title}</h2>
           <p className="section-subheading">{t.subtitle}</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
           {pricingPlans.map((plan, index) => (
             <motion.div
               key={plan.id}
@@ -63,22 +63,22 @@ const Pricing: React.FC = () => {
               )}
 
               <div
-                className={`bg-white rounded-2xl p-8 h-full flex flex-col ${
+                className={`bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 h-full flex flex-col ${
                   plan.popular
-                    ? 'ring-2 ring-primary-500 shadow-2xl transform scale-105'
+                    ? 'ring-2 ring-primary-500 shadow-2xl sm:transform sm:scale-105'
                     : 'shadow-lg hover:shadow-xl'
                 } transition-all duration-300`}
               >
                 {/* Header */}
-                <div className="text-center mb-6">
-                  <h3 className="text-2xl font-display font-bold text-dark-900 mb-2">
+                <div className="text-center mb-4 sm:mb-6">
+                  <h3 className="text-xl sm:text-2xl font-display font-bold text-dark-900 mb-2">
                     {isArabic ? plan.nameAr : plan.name}
                   </h3>
                   <div className="flex items-baseline justify-center space-x-1 rtl:space-x-reverse">
-                    <span className="text-5xl font-display font-bold text-primary-600">
+                    <span className="text-4xl sm:text-5xl font-display font-bold text-primary-600">
                       {plan.price.toLocaleString()}
                     </span>
-                    <span className="text-dark-500 text-sm">{t.currency}</span>
+                    <span className="text-dark-500 text-xs sm:text-sm">{t.currency}</span>
                   </div>
                   {plan.sessions > 1 && (
                     <p className="text-sm text-dark-500 mt-2">

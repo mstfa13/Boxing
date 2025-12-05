@@ -32,20 +32,20 @@ const Coaches: React.FC = () => {
   const isArabic = language.code === 'ar';
 
   return (
-    <section id="coaches" className="py-20 bg-white">
-      <div className="container-custom">
+    <section id="coaches" className="py-12 sm:py-16 md:py-20 bg-white">
+      <div className="container-custom px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-12 md:mb-16"
         >
           <h2 className="section-heading">{t.title}</h2>
           <p className="section-subheading">{t.subtitle}</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {coaches.map((coach, index) => (
             <motion.div
               key={coach.id}

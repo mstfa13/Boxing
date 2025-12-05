@@ -103,14 +103,14 @@ const Hero: React.FC = () => {
       </div>
 
       {/* Content */}
-      <div className="container-custom relative z-10 py-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Column - Text Content */}
+      <div className="container-custom relative z-10 py-12 px-4">
+        <div className="flex flex-col items-center text-center">
+          {/* Text Content - Mobile First */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-white space-y-8"
+            className="text-white space-y-6 w-full"
           >
             <div className="space-y-4">
               <motion.div
@@ -119,7 +119,7 @@ const Hero: React.FC = () => {
                 transition={{ delay: 0.2, duration: 0.6 }}
                 className="inline-block"
               >
-                <span className="px-4 py-2 bg-primary-600/20 border border-primary-500/30 rounded-full text-sm font-semibold text-primary-400 backdrop-blur-sm">
+                <span className="px-3 py-2 bg-primary-600/20 border border-primary-500/30 rounded-full text-xs sm:text-sm font-semibold text-primary-400 backdrop-blur-sm">
                   🥊 Founded by Coach Omar Mohamed
                 </span>
               </motion.div>
@@ -128,7 +128,7 @@ const Hero: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
-                className="text-5xl md:text-6xl lg:text-7xl font-display font-bold leading-tight"
+                className="text-4xl sm:text-5xl md:text-6xl font-display font-bold leading-tight px-2"
               >
                 {t.headline}
                 <br />
@@ -139,7 +139,7 @@ const Hero: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
-                className="text-xl text-dark-200 leading-relaxed max-w-xl"
+                className="text-base sm:text-lg md:text-xl text-dark-200 leading-relaxed max-w-2xl mx-auto px-4"
               >
                 {t.description}
               </motion.p>
@@ -150,12 +150,11 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
-              className="flex flex-wrap gap-4"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-md mx-auto px-4"
             >
               <motion.a
                 href="/booking"
-                className="btn-primary flex items-center space-x-2 rtl:space-x-reverse group"
-                whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(244, 63, 94, 0.3)" }}
+                className="btn-primary flex items-center justify-center space-x-2 rtl:space-x-reverse group w-full sm:w-auto flex-1"
                 whileTap={{ scale: 0.95 }}
               >
                 <span>{t.ctaPrimary}</span>
@@ -164,8 +163,7 @@ const Hero: React.FC = () => {
 
               <motion.button
                 onClick={() => setIsVideoOpen(true)}
-                className="btn-outline flex items-center space-x-2 rtl:space-x-reverse group"
-                whileHover={{ scale: 1.05 }}
+                className="btn-outline flex items-center justify-center space-x-2 rtl:space-x-reverse group w-full sm:w-auto"
                 whileTap={{ scale: 0.95 }}
               >
                 <Play size={20} className="group-hover:scale-110 transition-transform" />
@@ -178,28 +176,28 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.6 }}
-              className="grid grid-cols-3 gap-8 pt-8"
+              className="grid grid-cols-3 gap-4 sm:gap-6 md:gap-8 pt-8 max-w-xl mx-auto"
             >
               {t.stats.map((stat, index) => (
                 <div key={index} className="space-y-1">
-                  <div className="flex items-center space-x-1 rtl:space-x-reverse">
-                    <p className="text-3xl md:text-4xl font-display font-bold text-primary-500">
+                  <div className="flex items-center justify-center space-x-1 rtl:space-x-reverse">
+                    <p className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-primary-500">
                       {stat.value}
                     </p>
-                    {stat.icon && <stat.icon size={20} className="text-yellow-400 fill-current" />}
+                    {stat.icon && <stat.icon size={16} className="text-yellow-400 fill-current sm:w-5 sm:h-5" />}
                   </div>
-                  <p className="text-sm text-dark-300">{stat.label}</p>
+                  <p className="text-xs sm:text-sm text-dark-300">{stat.label}</p>
                 </div>
               ))}
             </motion.div>
           </motion.div>
 
-          {/* Right Column - Image/Visual */}
+          {/* Visual Element - Simplified for mobile */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4, duration: 0.8 }}
-            className="relative hidden lg:block"
+            className="relative w-full max-w-sm mx-auto mt-8 hidden"
           >
             {/* Floating Card */}
             <div className="relative">

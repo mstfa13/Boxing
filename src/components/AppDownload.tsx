@@ -42,7 +42,7 @@ const AppDownload: React.FC = () => {
   const t = content[language.code];
 
   return (
-    <section className="py-20 gradient-primary text-white relative overflow-hidden">
+    <section className="py-12 sm:py-16 md:py-20 gradient-primary text-white relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{

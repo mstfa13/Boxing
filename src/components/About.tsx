@@ -48,7 +48,7 @@ const About: React.FC = () => {
   const t = content[language.code];
 
   return (
-    <section id="about" className="py-20 bg-white">
+    <section id="about" className="py-12 sm:py-16 md:py-20 bg-white">
       <div className="container-custom">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Image Side */}

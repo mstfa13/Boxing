@@ -27,7 +27,7 @@ const FAQ: React.FC = () => {
   };
 
   return (
-    <section id="faq" className="py-20 bg-dark-50">
+    <section id="faq" className="py-12 sm:py-16 md:py-20 bg-dark-50">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
