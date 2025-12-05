@@ -42,6 +42,7 @@ const Footer: React.FC = () => {
       rights: 'All rights reserved.',
       madeWith: 'Made with',
       by: 'by Coach Omar Mohamed',
+      madeBy: 'Made by',
       address: 'Cairo, Egypt',
       phone: '+20 123 456 7890',
       email: 'info@omabox.com',
@@ -72,6 +73,7 @@ const Footer: React.FC = () => {
       rights: 'جميع الحقوق محفوظة.',
       madeWith: 'صنع بـ',
       by: 'بواسطة المدرب عمر محمد',
+      madeBy: 'صنع بواسطة',
       address: 'القاهرة، مصر',
       phone: '+20 123 456 7890',
       email: 'info@omabox.com',
@@ -250,6 +252,17 @@ const Footer: React.FC = () => {
               <Heart size={14} className="text-primary-500 fill-current" />
               <span>{t.by}</span>
             </p>
+          </div>
+          <div className="text-center mt-6 pt-4 border-t border-dark-800">
+            <span className="text-base text-dark-300">{t.madeBy} </span>
+            <a 
+              href="https://fikrax.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-lg text-primary-500 hover:text-primary-400 font-bold transition-colors"
+            >
+              FikraX
+            </a>
           </div>
         </div>
       </div>
