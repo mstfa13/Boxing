@@ -99,7 +99,7 @@ const Navbar: React.FC = () => {
               <Phone size={18} />
             </motion.a>
             <motion.a
-              href="#book-now"
+              href="/booking"
               className="btn-primary"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -152,7 +152,7 @@ const Navbar: React.FC = () => {
                     {language.code === 'en' ? 'العربية' : 'English'}
                   </span>
                 </button>
-                <a href="#book-now" className="btn-primary text-center" onClick={() => setIsOpen(false)}>
+                <a href="/booking" className="btn-primary text-center" onClick={() => setIsOpen(false)}>
                   {language.code === 'en' ? 'Book Your Coach Now' : 'احجز مدربك الآن'}
                 </a>
               </div>
