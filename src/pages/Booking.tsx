@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, User, Mail, Phone, MapPin, Calendar, Clock, CreditCard, Wallet, Check } from 'lucide-react';
+import { ArrowLeft, User, Mail, Phone, MapPin, Calendar, Clock, CreditCard, Wallet, Check, Loader2 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { initiateCardPayment, initiateWalletPayment, isPaymobConfigured } from '../services/paymob';
 
 const Booking: React.FC = () => {
   const { language } = useLanguage();
   const [step, setStep] = useState(1);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [paymentError, setPaymentError] = useState<string | null>(null);
+  const [showWalletInput, setShowWalletInput] = useState(false);
+  const [walletPhone, setWalletPhone] = useState('');
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -92,21 +97,75 @@ const Booking: React.FC = () => {
     if (step > 1) setStep(step - 1);
   };
 
-  const handlePayment = (method: 'card' | 'vodafone') => {
-    // This will integrate with Paymob API
-    console.log('Processing payment with:', method);
-    console.log('Form data:', formData);
+  const handlePayment = async (method: 'card' | 'vodafone') => {
+    setPaymentError(null);
     
-    // TODO: Implement Paymob integration
-    // For now, we'll simulate the payment process
-    alert(`Payment via ${method} will be processed through Paymob`);
+    // Check if Paymob is configured
+    if (!isPaymobConfigured()) {
+      setPaymentError('Payment system is not configured. Please contact support.');
+      return;
+    }
+
+    const amount = sessionPrices[formData.sessionType];
+    const packageName = formData.sessionType === 'single' ? 'Single Session' :
+                        formData.sessionType === 'pack5' ? '8 Sessions Pack' :
+                        formData.sessionType === 'pack10' ? '10 Sessions Pack' : 'VIP Monthly';
+
+    const customerData = {
+      fullName: formData.fullName,
+      email: formData.email,
+      phone: formData.phone,
+      address: formData.address,
+      city: formData.city,
+    };
+
+    if (method === 'card') {
+      setIsProcessing(true);
+      try {
+        const iframeUrl = await initiateCardPayment(amount, customerData, packageName);
+        // Redirect to Paymob payment iframe
+        window.location.href = iframeUrl;
+      } catch (error) {
+        console.error('Payment error:', error);
+        setPaymentError('Failed to initiate payment. Please try again.');
+        setIsProcessing(false);
+      }
+    } else if (method === 'vodafone') {
+      if (!showWalletInput) {
+        setShowWalletInput(true);
+        setWalletPhone(formData.phone); // Pre-fill with customer phone
+        return;
+      }
+
+      if (!walletPhone || walletPhone.length < 11) {
+        setPaymentError('Please enter a valid wallet phone number');
+        return;
+      }
+
+      setIsProcessing(true);
+      try {
+        const result = await initiateWalletPayment(amount, customerData, packageName, walletPhone);
+        if (result.redirect_url) {
+          window.location.href = result.redirect_url;
+        } else if (result.iframe_redirection_url) {
+          window.location.href = result.iframe_redirection_url;
+        } else {
+          setPaymentError('Wallet payment initiated. Check your phone for confirmation.');
+          setIsProcessing(false);
+        }
+      } catch (error) {
+        console.error('Wallet payment error:', error);
+        setPaymentError('Failed to initiate wallet payment. Please try again.');
+        setIsProcessing(false);
+      }
+    }
   };
 
   const sessionPrices: { [key: string]: number } = {
-    single: 350,
-    pack5: 1500,
-    pack10: 2800,
-    pack20: 5200,
+    single: 1500,
+    pack5: 10000,
+    pack10: 15000,
+    pack20: 20000,
   };
 
   return (
@@ -402,47 +461,88 @@ const Booking: React.FC = () => {
                     </div>
                   </div>
 
+                  {/* Payment Error */}
+                  {paymentError && (
+                    <div className="bg-red-500/20 border border-red-500/50 rounded-xl p-4">
+                      <p className="text-red-400 text-sm text-center">{paymentError}</p>
+                    </div>
+                  )}
+
                   {/* Payment Methods */}
                   <div>
                     <h3 className="text-xl font-bold text-white mb-4">{t.paymentMethod}</h3>
                     <div className="grid gap-4">
                       {/* Visa/Mastercard */}
                       <motion.button
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
+                        whileHover={{ scale: isProcessing ? 1 : 1.02 }}
+                        whileTap={{ scale: isProcessing ? 1 : 0.98 }}
                         onClick={() => handlePayment('card')}
-                        className="flex items-center justify-between p-6 bg-gradient-to-r from-blue-600/20 to-blue-700/20 border-2 border-blue-500/30 hover:border-blue-500 rounded-2xl transition-all group"
+                        disabled={isProcessing}
+                        className={`flex items-center justify-between p-6 bg-gradient-to-r from-blue-600/20 to-blue-700/20 border-2 border-blue-500/30 hover:border-blue-500 rounded-2xl transition-all group ${isProcessing ? 'opacity-50 cursor-not-allowed' : ''}`}
                       >
                         <div className="flex items-center space-x-4">
                           <div className="w-14 h-14 bg-blue-500/20 rounded-xl flex items-center justify-center group-hover:bg-blue-500/30 transition-colors">
-                            <CreditCard size={28} className="text-blue-400" />
+                            {isProcessing ? (
+                              <Loader2 size={28} className="text-blue-400 animate-spin" />
+                            ) : (
+                              <CreditCard size={28} className="text-blue-400" />
+                            )}
                           </div>
                           <div className="text-left">
                             <p className="text-white font-bold text-lg">{t.visaCard}</p>
                             <p className="text-dark-300 text-sm">Secure payment via Paymob</p>
                           </div>
                         </div>
-                        <div className="text-blue-400 font-bold">→</div>
+                        <div className="text-blue-400 font-bold">{isProcessing ? '...' : '→'}</div>
                       </motion.button>
 
                       {/* Vodafone Cash */}
-                      <motion.button
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        onClick={() => handlePayment('vodafone')}
-                        className="flex items-center justify-between p-6 bg-gradient-to-r from-red-600/20 to-red-700/20 border-2 border-red-500/30 hover:border-red-500 rounded-2xl transition-all group"
-                      >
-                        <div className="flex items-center space-x-4">
-                          <div className="w-14 h-14 bg-red-500/20 rounded-xl flex items-center justify-center group-hover:bg-red-500/30 transition-colors">
-                            <Wallet size={28} className="text-red-400" />
+                      <div className="space-y-3">
+                        <motion.button
+                          whileHover={{ scale: isProcessing ? 1 : 1.02 }}
+                          whileTap={{ scale: isProcessing ? 1 : 0.98 }}
+                          onClick={() => handlePayment('vodafone')}
+                          disabled={isProcessing}
+                          className={`w-full flex items-center justify-between p-6 bg-gradient-to-r from-red-600/20 to-red-700/20 border-2 border-red-500/30 hover:border-red-500 rounded-2xl transition-all group ${isProcessing ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        >
+                          <div className="flex items-center space-x-4">
+                            <div className="w-14 h-14 bg-red-500/20 rounded-xl flex items-center justify-center group-hover:bg-red-500/30 transition-colors">
+                              {isProcessing ? (
+                                <Loader2 size={28} className="text-red-400 animate-spin" />
+                              ) : (
+                                <Wallet size={28} className="text-red-400" />
+                              )}
+                            </div>
+                            <div className="text-left">
+                              <p className="text-white font-bold text-lg">{t.vodafoneCash}</p>
+                              <p className="text-dark-300 text-sm">Pay with your mobile wallet</p>
+                            </div>
                           </div>
-                          <div className="text-left">
-                            <p className="text-white font-bold text-lg">{t.vodafoneCash}</p>
-                            <p className="text-dark-300 text-sm">Pay with your mobile wallet</p>
-                          </div>
-                        </div>
-                        <div className="text-red-400 font-bold">→</div>
-                      </motion.button>
+                          <div className="text-red-400 font-bold">{isProcessing ? '...' : '→'}</div>
+                        </motion.button>
+
+                        {/* Wallet Phone Input */}
+                        {showWalletInput && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            className="bg-dark-700/50 rounded-xl p-4 border border-red-500/30"
+                          >
+                            <label className="block text-white font-medium mb-2">
+                              <Phone size={18} className="inline mr-2" />
+                              Wallet Phone Number
+                            </label>
+                            <input
+                              type="tel"
+                              value={walletPhone}
+                              onChange={(e) => setWalletPhone(e.target.value)}
+                              placeholder="01xxxxxxxxx"
+                              className="w-full px-4 py-3 bg-dark-600 border border-dark-500 rounded-xl text-white placeholder-dark-400 focus:outline-none focus:border-red-500 transition-colors"
+                            />
+                            <p className="text-dark-400 text-xs mt-2">Enter the phone number linked to your Vodafone Cash account</p>
+                          </motion.div>
+                        )}
+                      </div>
                     </div>
                   </div>
 
