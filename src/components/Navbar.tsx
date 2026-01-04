@@ -58,11 +58,13 @@ const Navbar: React.FC = () => {
             className="flex items-center space-x-1.5 sm:space-x-2 rtl:space-x-reverse"
             whileTap={{ scale: 0.95 }}
           >
-            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-primary rounded-lg flex items-center justify-center">
-              <span className="text-white font-display font-bold text-xl sm:text-2xl">O</span>
-            </div>
+            <img 
+              src="/images/omaboxlogo.jpeg" 
+              alt="zeeprivate Logo" 
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg object-cover"
+            />
             <span className="text-xl sm:text-2xl font-display font-bold text-dark-900">
-              Oma<span className="text-primary-600">Box</span>
+              zee<span className="text-primary-600">private</span>
             </span>
           </motion.a>
 
@@ -92,8 +94,10 @@ const Navbar: React.FC = () => {
               <span className="text-sm font-medium">{language.code === 'en' ? 'AR' : 'EN'}</span>
             </button>
             <motion.a
-              href="tel:+201234567890"
-              className="flex items-center space-x-2 rtl:space-x-reverse text-dark-700 hover:text-primary-600 transition-colors"
+              href="https://wa.me/201289996001"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center space-x-2 rtl:space-x-reverse text-dark-700 hover:text-green-600 transition-colors"
               whileHover={{ scale: 1.05 }}
             >
               <Phone size={18} />

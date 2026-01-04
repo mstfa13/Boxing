@@ -45,7 +45,7 @@ const Footer: React.FC = () => {
       madeBy: 'Made by',
       address: 'Cairo, Egypt',
       phone: '+20 123 456 7890',
-      email: 'info@omabox.com',
+      email: 'info@zeeprivate.com',
     },
     ar: {
       tagline: 'تدريب الملاكمة الاحترافي على عتبة بابك',
@@ -76,7 +76,7 @@ const Footer: React.FC = () => {
       madeBy: 'صنع بواسطة',
       address: 'القاهرة، مصر',
       phone: '+20 123 456 7890',
-      email: 'info@omabox.com',
+      email: 'info@zeeprivate.com',
     },
   };
 
@@ -90,11 +90,13 @@ const Footer: React.FC = () => {
           {/* Brand Section */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2 rtl:space-x-reverse">
-              <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center">
-                <span className="text-white font-display font-bold text-2xl">O</span>
-              </div>
+              <img 
+                src="/images/omaboxlogo.jpeg" 
+                alt="zeeprivate Logo" 
+                className="w-12 h-12 rounded-lg object-cover"
+              />
               <span className="text-2xl font-display font-bold">
-                Oma<span className="text-primary-500">Box</span>
+                zee<span className="text-primary-500">private</span>
               </span>
             </div>
             <p className="text-dark-300 text-sm leading-relaxed">{t.tagline}</p>
@@ -105,7 +107,7 @@ const Footer: React.FC = () => {
                 <Phone size={16} />
                 <span>{t.phone}</span>
               </a>
-              <a href="mailto:info@omabox.com" className="flex items-center space-x-2 rtl:space-x-reverse text-dark-300 hover:text-white transition-colors text-sm">
+              <a href="mailto:info@zeeprivate.com" className="flex items-center space-x-2 rtl:space-x-reverse text-dark-300 hover:text-white transition-colors text-sm">
                 <Mail size={16} />
                 <span>{t.email}</span>
               </a>
@@ -245,7 +247,7 @@ const Footer: React.FC = () => {
         <div className="container-custom py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-dark-400">
             <p>
-              © {new Date().getFullYear()} OmaBox. {t.rights}
+              © {new Date().getFullYear()} zeeprivate. {t.rights}
             </p>
             <p className="flex items-center space-x-1 rtl:space-x-reverse">
               <span>{t.madeWith}</span>

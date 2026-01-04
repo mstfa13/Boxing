@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, ArrowRight, Star, Users, Award, X } from 'lucide-react';
+import { Play, ArrowRight, X, Award, Users } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 const Hero: React.FC = () => {
@@ -38,11 +38,6 @@ const Hero: React.FC = () => {
       description: 'Book certified boxing coaches to train at your home or preferred location in Egypt. Expert training, flexible scheduling, affordable pricing.',
       ctaPrimary: 'Book Your Coach Now',
       ctaSecondary: 'Watch How It Works',
-      stats: [
-        { value: '50+', label: 'Expert Coaches' },
-        { value: '10K+', label: 'Sessions Completed' },
-        { value: '4.9', label: 'Average Rating', icon: Star },
-      ],
     },
     ar: {
       headline: 'تدريب ملاكمة احترافي',
@@ -50,11 +45,6 @@ const Hero: React.FC = () => {
       description: 'احجز مدربي الملاكمة المعتمدين للتدريب في منزلك أو موقعك المفضل في مصر. تدريب متخصص، جدولة مرنة، أسعار معقولة.',
       ctaPrimary: 'احجز مدربك الآن',
       ctaSecondary: 'شاهد كيف يعمل',
-      stats: [
-        { value: '+50', label: 'مدرب متخصص' },
-        { value: '+10 آلاف', label: 'جلسة مكتملة' },
-        { value: '4.9', label: 'متوسط التقييم', icon: Star },
-      ],
     },
   };
 
@@ -169,26 +159,6 @@ const Hero: React.FC = () => {
                 <Play size={20} className="group-hover:scale-110 transition-transform" />
                 <span>{t.ctaSecondary}</span>
               </motion.button>
-            </motion.div>
-
-            {/* Stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              className="grid grid-cols-3 gap-4 sm:gap-6 md:gap-8 pt-8 max-w-xl mx-auto"
-            >
-              {t.stats.map((stat, index) => (
-                <div key={index} className="space-y-1">
-                  <div className="flex items-center justify-center space-x-1 rtl:space-x-reverse">
-                    <p className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-primary-500">
-                      {stat.value}
-                    </p>
-                    {stat.icon && <stat.icon size={16} className="text-yellow-400 fill-current sm:w-5 sm:h-5" />}
-                  </div>
-                  <p className="text-xs sm:text-sm text-dark-300">{stat.label}</p>
-                </div>
-              ))}
             </motion.div>
           </motion.div>
 
@@ -350,7 +320,7 @@ const Hero: React.FC = () => {
                       <Play size={20} className="text-white fill-current" />
                     </div>
                     <div>
-                      <h3 className="text-white font-semibold text-lg">How OmaBox Works</h3>
+                      <h3 className="text-white font-semibold text-lg">How zeeprivate Works</h3>
                       <p className="text-dark-300 text-sm">Discover professional boxing training at home</p>
                     </div>
                   </div>
@@ -379,7 +349,7 @@ const Hero: React.FC = () => {
                     <iframe
                       className="w-full h-full"
                       src="https://www.youtube.com/embed/IcSLWd7TcL0?autoplay=1&rel=0&modestbranding=1"
-                      title="How OmaBox Works"
+                      title="How zeeprivate Works"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
                     />

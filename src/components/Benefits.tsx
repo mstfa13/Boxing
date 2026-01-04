@@ -8,7 +8,7 @@ const Benefits: React.FC = () => {
 
   const content = {
     en: {
-      title: 'Why Choose OmaBox',
+      title: 'Why Choose zeeprivate',
       subtitle: 'Experience the future of personal boxing training',
       benefits: [
         {
@@ -44,7 +44,7 @@ const Benefits: React.FC = () => {
       ],
     },
     ar: {
-      title: 'لماذا تختار أوماباكس',
+      title: 'لماذا تختار zeeprivate',
       subtitle: 'اختبر مستقبل التدريب الشخصي في الملاكمة',
       benefits: [
         {
@@ -107,10 +107,10 @@ const Benefits: React.FC = () => {
               transition={{ delay: index * 0.1, duration: 0.6 }}
               className="group"
             >
-              <div className="bg-dark-50 rounded-2xl p-8 h-full hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+              <div className="bg-white rounded-2xl p-8 h-full hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-dark-100">
                 <motion.div
                   whileHover={{ scale: 1.1, rotate: 5 }}
-                  className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:shadow-xl transition-shadow"
+                  className="w-16 h-16 bg-primary-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:shadow-xl transition-shadow"
                 >
                   <benefit.icon className="text-white" size={32} />
                 </motion.div>

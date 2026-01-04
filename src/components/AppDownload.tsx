@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Smartphone, Bell } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 
 const AppDownload: React.FC = () => {
@@ -93,15 +94,18 @@ const AppDownload: React.FC = () => {
             {/* Coming Soon Notice */}
             <div className="pt-4">
               <p className="text-white/80 mb-4">{t.stayTuned}</p>
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                className="inline-flex items-center space-x-3 rtl:space-x-reverse bg-white/20 backdrop-blur-sm text-white px-6 py-4 rounded-xl border border-white/30"
-              >
-                <Bell size={24} />
-                <div className="text-left rtl:text-right">
-                  <p className="font-bold">{t.notifyMe}</p>
-                </div>
-              </motion.div>
+              <Link to="/notify-me">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="inline-flex items-center space-x-3 rtl:space-x-reverse bg-white text-primary-600 px-6 py-4 rounded-xl border border-white/30 cursor-pointer hover:bg-white/90 transition-colors"
+                >
+                  <Bell size={24} />
+                  <div className="text-left rtl:text-right">
+                    <p className="font-bold">{t.notifyMe}</p>
+                  </div>
+                </motion.div>
+              </Link>
             </div>
           </motion.div>
 

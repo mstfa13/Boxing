@@ -10,7 +10,7 @@ const About: React.FC = () => {
     en: {
       title: 'Meet Coach Omar Mohamed',
       subtitle: 'Founder & Visionary',
-      bio: 'Coach Omar Mohamed is a certified professional boxing trainer with over 15 years of experience in the sport. His passion for boxing and belief in its transformative power led him to create OmaBox - a platform that brings world-class boxing training to everyone, regardless of location or schedule.',
+      bio: 'Coach Omar Mohamed is a certified professional boxing trainer with over 15 years of experience in the sport. His passion for boxing and belief in its transformative power led him to create zeeprivate - a platform that brings world-class boxing training to everyone, regardless of location or schedule.',
       mission: 'Our mission is simple: make professional boxing training accessible, convenient, and affordable for everyone in Egypt. We believe that boxing is more than just a sport - it\'s a path to confidence, discipline, and physical excellence.',
       stats: [
         { icon: Award, value: '15+', label: 'Years Experience' },
@@ -69,7 +69,7 @@ const About: React.FC = () => {
               {/* Overlay Badge */}
               <div className="absolute bottom-8 left-8 right-8 bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-xl">
                 <div className="flex items-center space-x-4 rtl:space-x-reverse">
-                  <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center flex-shrink-0">
+                  <div className="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0">
                     <Award className="text-white" size={32} />
                   </div>
                   <div>
@@ -133,9 +133,11 @@ const About: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1, duration: 0.6 }}
-                  className="bg-dark-50 rounded-xl p-4 text-center"
+                  className="bg-white border border-dark-100 rounded-xl p-4 text-center shadow-sm"
                 >
-                  <stat.icon className="text-primary-600 mx-auto mb-2" size={24} />
+                  <div className="w-12 h-12 bg-primary-600 rounded-xl flex items-center justify-center mx-auto mb-2">
+                    <stat.icon className="text-white" size={24} />
+                  </div>
                   <p className="text-3xl font-display font-bold text-dark-900 mb-1">
                     {stat.value}
                   </p>

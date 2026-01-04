@@ -55,7 +55,7 @@ const Pricing: React.FC = () => {
             >
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
-                  <div className="bg-gradient-primary text-white px-4 py-1.5 rounded-full text-sm font-semibold flex items-center space-x-1 rtl:space-x-reverse shadow-lg">
+                  <div className="bg-primary-600 text-white px-4 py-1.5 rounded-full text-sm font-semibold flex items-center space-x-1 rtl:space-x-reverse shadow-lg">
                     <Sparkles size={16} />
                     <span>{t.mostPopular}</span>
                   </div>

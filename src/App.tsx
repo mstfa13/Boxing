@@ -12,6 +12,8 @@ import AppDownload from './components/AppDownload';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 import Booking from './pages/Booking';
+import NotifyMe from './pages/NotifyMe';
+import WhatsAppButton from './components/WhatsAppButton';
 
 function HomePage() {
   return (
@@ -39,9 +41,11 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/booking" element={<Booking />} />
+              <Route path="/notify-me" element={<NotifyMe />} />
             </Routes>
           </main>
           <Footer />
+          <WhatsAppButton />
         </div>
       </Router>
     </LanguageProvider>

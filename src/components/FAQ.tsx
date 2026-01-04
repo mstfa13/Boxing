@@ -11,7 +11,7 @@ const FAQ: React.FC = () => {
   const content = {
     en: {
       title: 'Frequently Asked Questions',
-      subtitle: 'Everything you need to know about OmaBox',
+      subtitle: 'Everything you need to know about zeeprivate',
     },
     ar: {
       title: 'الأسئلة الشائعة',
